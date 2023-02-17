@@ -47,6 +47,7 @@ public class GildedRoseARefactorTest {
 		AssertItem(expected, app.items[0]);
 	}
 
+
 	// helper functions
 
 	private void AssertItem(Item expected, Item actual) {
