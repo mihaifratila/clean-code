@@ -8,10 +8,10 @@ public class GildedRoseADefaultItemTest {
 	/**
 	 * Method to test the variation in quality of the item for the non expired
 	 * Item.
-	 * 
+	 *
 	 * The quality should decrease by 1 when the item is not expired
 	 * and sell in should decrease by 1.
-	 * 
+	 *
 	 */
 	@Test
 	public void testUpdateQualityDefault1() {

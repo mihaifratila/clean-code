@@ -13,7 +13,8 @@ class GildedRose {
 	public static void main(String[] args) {
 
 		Item[] items = new Item[] { 
-							new Item("Default Item", 10, 20)
+							new Item("Default Item", 10, 20),
+							// new Item("Aged Brie", 2, 0)
 					   };
 
 		GildedRose app = new GildedRose(items);
