@@ -1,12 +1,21 @@
 package com.b.simple.design.business.student;
 public class StudentHelper {
 
-	/* PROBLEM 1 */	
+	public static final int GRADE_B_LOWER_LIMIT = 51;
+	public static final int GRADE_B_UPPER_LIMIT = 80;
+	public static final int EXTRA_LIMIT_FOR_MATH = 10;
+
+	/* PROBLEM 1 */
 	/*
-	* You get a grade B if marks are between 51 and 80 (both inclusive). Except for Maths where the upper limit is increased by 10.
+	* You get a grade B if marks are between 51 and 80 (both inclusive).
+	* Except for Math where the upper limit is increased by 10.
 	*/
-	public boolean isGradeB(int marks, boolean isMaths) {
-		return isMaths ? marks>=51 && marks<=90 : marks>=51 && marks<=80; 
+	public boolean isGradeB(int marks, boolean isMath) {
+
+		int extraLimit = isMath ? EXTRA_LIMIT_FOR_MATH : 0;
+		int upperLimit = GRADE_B_UPPER_LIMIT + extraLimit;
+
+		return marks>= GRADE_B_LOWER_LIMIT && marks<= upperLimit;
 	}
 
 	/* PROBLEM 2 */
@@ -17,27 +26,18 @@ public class StudentHelper {
 	*/
 
 	public String getGrade(int mark, boolean isMaths) {
-		String grade = "C";
+
+		final int extraLimit = isMaths ? 5 : 0;
+
+		if (mark >= 91 + extraLimit)
+			return "A";
+
+		if (mark > 50 + extraLimit)
+			return "B";
 		
-		if (isGradeA(mark, isMaths))
-			grade = "A";
-		else if (isBGrade(mark, isMaths)) {
-			grade = "B";
-		}
-		return grade;
+		return "C";
 	}
 
-	private boolean isGradeA(int mark, boolean isMaths) {
-		int lowerLimitForAGrade = isMaths ? 95
-				: 90;
-		return mark > lowerLimitForAGrade;
-	}
-
-	private boolean isBGrade(int mark, boolean isMaths) {
-		int lowerLimitGradeB = isMaths ? 55
-				: 50;
-		return mark > lowerLimitGradeB && mark < 90;
-	}
 
     /*  PROBLEM 3
      * You and your Friend are planning to enter a Subject Quiz.
@@ -56,10 +56,17 @@ public class StudentHelper {
     */
         
     public String willQualifyForQuiz(int marks1, int marks2, boolean isMaths) {
-        if ((isMaths ? marks1 <= 25 : marks1 <= 20)
-                || (isMaths ? marks2 <= 25 : marks2 <= 20)) return "NO";
-        if ((isMaths ? marks1 >= 85 : marks1 >= 80)
-                || (isMaths ? marks2 >= 85 : marks2 >= 80)) return "YES";
+
+		int extraLimit = isMaths ? 5 : 0;
+		int lowerLimit = 20 + extraLimit;
+		int upperLimit = 80 + extraLimit;
+
+        if ((marks1 <= lowerLimit) || (marks2 <= lowerLimit))
+			return "NO";
+
+        if ((marks1 >= upperLimit) || (marks2 >= upperLimit))
+			return "YES";
+
         return "MAYBE";
     }	
 
