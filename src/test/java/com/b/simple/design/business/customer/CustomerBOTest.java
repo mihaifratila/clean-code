@@ -45,8 +45,7 @@ public class CustomerBOTest {
 
 
 	@Test
-	public void testCustomerProductSum_TwoProductsDifferentCurrencies()
-			throws DifferentCurrenciesException {
+	public void testCustomerProductSum_TwoProductsDifferentCurrencies_ThrowsException() {
 
 		//setup
 		Amount[] amounts = {
@@ -57,9 +56,8 @@ public class CustomerBOTest {
 		List<Product> products = createProductsWithAmounts(amounts);
 
 		// verify - checks that the Assertion is thrown
-		Assertions.assertThrows(DifferentCurrenciesException.class, ()-> {
-			customerBO.getCustomerProductsSum(products);
-		});
+		Assertions.assertThrows(DifferentCurrenciesException.class, () ->
+			customerBO.getCustomerProductsSum(products));
 
 	}
 
