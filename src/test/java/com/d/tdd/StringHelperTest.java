@@ -7,11 +7,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 class StringHelperTest {
-	//"", "A", "AA", "B", "BC"
+	// "ABCD" => "BCD", "AACD"=> "CD", "BACD"=>"BCD", "AAAA" => "AA", "MNAA"=>"MNAA"
 	StringHelper helper = new StringHelper();
 
 	@Test
-	void testReplaceAInFirst2Positions() {
+	void testTruncateAInFirstTwoPositions() {
+
 		assertEquals("BCD", helper.replaceAInFirst2Positions("ABCD"));
 		assertEquals("CD", helper.replaceAInFirst2Positions("AACD"));
 		assertEquals("BCD", helper.replaceAInFirst2Positions("BACD"));
@@ -22,12 +23,10 @@ class StringHelperTest {
 		assertEquals("", helper.replaceAInFirst2Positions("AA"));
 		assertEquals("B", helper.replaceAInFirst2Positions("B"));
 		assertEquals("BC", helper.replaceAInFirst2Positions("BC"));
+
 	}
 	
 	//""=>false, "A"=>false, "AB"=>true, "ABC"=>false, "AAA"=>true, "ABCAB"=>true, "ABCDEBA"=>false
-	//Red
-	//Green
-	//Refactor
 
 	@Test
 	void testAreFirstTwoAndLastTwoCharsTheSame() {
@@ -37,7 +36,10 @@ class StringHelperTest {
 		assertFalse(helper.areFirstTwoAndLastTwoCharsTheSame("ABC"));
 		assertTrue(helper.areFirstTwoAndLastTwoCharsTheSame("AAA"));
 		assertTrue(helper.areFirstTwoAndLastTwoCharsTheSame("ABCAB"));
-		assertFalse(helper.areFirstTwoAndLastTwoCharsTheSame("ABCDEBA"));	
+		assertFalse(helper.areFirstTwoAndLastTwoCharsTheSame("ABCDEBA"));
+
+
+
 	}
 
 }
