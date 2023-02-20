@@ -2,6 +2,7 @@ package com.d.tdd;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 //0 20
@@ -49,11 +50,10 @@ class GameTest {
 
 	@Test
 	void testTwoSpares() {
-
 		rollASpare();
 		rollASpare();
 		rollMultipleTimes(1, 16);
-		
+
 		assertEquals(42, game.score());
 	}
 	
@@ -65,17 +65,17 @@ class GameTest {
 	}
 
 
+	private void rollMultipleTimes(int pinsKnockedDown, int numberOfRolls) {
+		for(int currentRoll = 1; currentRoll <= numberOfRolls; currentRoll++) {
+			game.roll(pinsKnockedDown);
+		}
+	}
+
 	private void rollASpare() {
 		rollMultipleTimes(5, 2);
 	}
 
-	private void rollMultipleTimes(int pinsKnockedDown, int noOfTimes) {
-		for (int i = 1; i <= noOfTimes; i++)
-			game.roll(pinsKnockedDown);
-	}
+
 
 }
 
-//Red
-//Green
-//Refactor
